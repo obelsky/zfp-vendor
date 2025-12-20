@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katalog služeb - ZFP Vendor</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="auth.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="home.html" class="logo">
+                <img src="logo.jpg" alt="ZFP GROUP">
+                <span class="logo-product">Vendor</span>
+            </a>
+            <nav>
+                <a href="home.html">Domů</a>
+                <a href="sluzby.html" class="active">Služby</a>
+                <a href="automatizace.html">Automatizace</a>
+                <a href="jak-to-funguje.html">Jak to funguje</a>
+                <a href="kontakt.html">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <h1>Katalog služeb</h1>
+        <p>Začni tam, kde jsi. Přidávej další služby, až budeš růst.</p>
+    </div>
+
+    <section>
+        <div class="filters">
+            <div class="filter-group">
+                <label class="filter-label">Úroveň</label>
+                <div class="filter-pills">
+                    <button class="filter-pill active" data-filter-type="level" data-filter-value="vse">Vše</button>
+                    <button class="filter-pill" data-filter-type="level" data-filter-value="zaklad">Základ</button>
+                    <button class="filter-pill" data-filter-type="level" data-filter-value="rust">Růst</button>
+                    <button class="filter-pill" data-filter-type="level" data-filter-value="pro">Pro</button>
+                </div>
+            </div>
+            <div class="filter-group">
+                <label class="filter-label">Typ služby</label>
+                <div class="filter-pills">
+                    <button class="filter-pill active" data-filter-type="type" data-filter-value="vse">Vše</button>
+                    <button class="filter-pill" data-filter-type="type" data-filter-value="web">Web</button>
+                    <button class="filter-pill" data-filter-type="type" data-filter-value="marketing">Marketing</button>
+                    <button class="filter-pill" data-filter-type="type" data-filter-value="automatizace">Automatizace</button>
+                    <button class="filter-pill" data-filter-type="type" data-filter-value="obsah">Obsah</button>
+                </div>
+            </div>
+            <div class="filter-group">
+                <label class="filter-label">Vyhledávání</label>
+                <input type="text" class="search-input" id="searchInput" placeholder="Hledat podle názvu...">
+            </div>
+        </div>
+
+        <div class="services-grid" id="servicesGrid">
+            <div class="service-card" data-level="zaklad" data-type="web" data-name="Web pro realitního makléře">
+                <span class="service-level zaklad">Základ</span>
+                <h3 class="service-title">Web pro realitního makléře</h3>
+                <p class="service-value">Optimalizovaný web pro realitní byznys</p>
+                <div class="service-includes">
+                    <p class="service-includes-title">Součást balíčku</p>
+                    <ul class="service-includes-list">
+                        <li>Web na vlastní doméně.</li>
+                        <li>Texty zaměřené na realitní služby.</li>
+                        <li>Optimalizace pro vyhledávače.</li>
+                        <li>Sekce: nemovitosti, náběr, hypotéky.</li>
+                        <li>Průběžná podpora a rozvoj.</li>
+                    </ul>
+                </div>
+                <div class="service-price-section">
+                    <div class="service-price">7 950 Kč / rok</div>
+                    <div class="service-price-note">Doména a hosting nejsou v ceně.</div>
+                    <button class="btn btn-primary" style="width: 100%;" onclick="openModal('Web pro realitního makléře')">Objednat</button>
+                </div>
+            </div>
+
+            <div class="service-card" data-level="zaklad" data-type="web" data-name="Web pro finančního poradce">
+                <span class="service-level zaklad">Základ</span>
+                <h3 class="service-title">Web pro finančního poradce</h3>
+                <p class="service-value">Profesionální prezentace finančních služeb</p>
+                <div class="service-includes">
+                    <p class="service-includes-title">Součást balíčku</p>
+                    <ul class="service-includes-list">
+                        <li>Web na vlastní doméně.</li>
+                        <li>Texty pro finanční poradenství.</li>
+                        <li>Optimalizace pro vyhledávače.</li>
+                        <li>Sekce: pojištění, hypotéky, investice.</li>
+                        <li>Průběžná podpora a rozvoj.</li>
+                    </ul>
+                </div>
+                <div class="service-price-section">
+                    <div class="service-price">7 950 Kč / rok</div>
+                    <div class="service-price-note">Doména a hosting nejsou v ceně.</div>
+                    <button class="btn btn-primary" style="width: 100%;" onclick="openModal('Web pro finančního poradce')">Objednat</button>
+                </div>
+            </div>
+
+            <div class="service-card" data-level="rust" data-type="marketing" data-name="E-book jako lead magnet">
+                <span class="service-level rust">Růst</span>
+                <h3 class="service-title">E-book jako lead magnet</h3>
+                <p class="service-value">Získávej nové kontakty automaticky</p>
+                <div class="service-includes">
+                    <p class="service-includes-title">Součást balíčku</p>
+                    <ul class="service-includes-list">
+                        <li>E-book na vybrané téma.</li>
+                        <li>Landing page ke stažení.</li>
+                        <li>Napojení na e-mailový nástroj.</li>
+                    </ul>
+                </div>
+                <div class="service-price-section">
+                    <div class="service-price">695 Kč</div>
+                    <div class="service-price-note">Jednorázová platba</div>
+                    <button class="btn btn-primary" style="width: 100%;" onclick="openModal('E-book jako lead magnet')">Objednat</button>
+                </div>
+            </div>
+
+            <div class="service-card" data-level="rust" data-type="marketing" data-name="Google Ads kampaň">
+                <span class="service-level rust">Růst</span>
+                <h3 class="service-title">Google Ads kampaň</h3>
+                <p class="service-value">Buď vidět ve chvíli, kdy tě klient hledá</p>
+                <div class="service-includes">
+                    <p class="service-includes-title">Součást balíčku</p>
+                    <ul class="service-includes-list">
+                        <li>Nastavení a spuštění kampaní.</li>
+                        <li>Výběr klíčových slov.</li>
+                        <li>Tvorba reklam.</li>
+                        <li>Průběžná optimalizace.</li>
+                        <li>Měsíční report + konzultace.</li>
+                    </ul>
+                </div>
+                <div class="service-price-section">
+                    <div class="service-price">1 995 Kč / měsíc</div>
+                    <div class="service-price-note">Správa kampaně. Reklamní kredit: 5–15 000 Kč / měsíc.</div>
+                    <button class="btn btn-primary" style="width: 100%;" onclick="openModal('Google Ads kampaň')">Objednat</button>
+                </div>
+            </div>
+
+            <div class="service-card" data-level="rust" data-type="marketing" data-name="Facebook / Meta Ads">
+                <span class="service-level rust">Růst</span>
+                <h3 class="service-title">Facebook / Meta Ads</h3>
+                <p class="service-value">Zasáhni cílovou skupinu na sociálních sítích</p>
+                <div class="service-includes">
+                    <p class="service-includes-title">Součást balíčku</p>
+                    <ul class="service-includes-list">
+                        <li>Nastavení a spuštění kampaní.</li>
+                        <li>Targeting cílové skupiny.</li>
+                        <li>Tvorba kreativ.</li>
+                        <li>Optimalizace.</li>
+                        <li>Měsíční report + konzultace.</li>
+                    </ul>
+                </div>
+                <div class="service-price-section">
+                    <div class="service-price">1 995 Kč / měsíc</div>
+                    <div class="service-price-note">Správa kampaně. Reklamní kredit: 5–15 000 Kč / měsíc.</div>
+                    <button class="btn btn-primary" style="width: 100%;" onclick="openModal('Facebook / Meta Ads')">Objednat</button>
+                </div>
+            </div>
+
+            <div class="service-card" data-level="zaklad" data-type="obsah" data-name="Profesionální fotografie">
+                <span class="service-level zaklad">Základ</span>
+                <h3 class="service-title">Profesionální fotografie</h3>
+                <p class="service-value">Zvyš důvěru profesionální prezentací</p>
+                <div class="service-includes">
+                    <p class="service-includes-title">Součást balíčku</p>
+                    <ul class="service-includes-list">
+                        <li>Profesionální focení.</li>
+                        <li>Úprava a retuš.</li>
+                        <li>Více variant použití.</li>
+                        <li>Digitální dodání.</li>
+                    </ul>
+                </div>
+                <div class="service-price-section">
+                    <div class="service-price">Individuálně</div>
+                    <div class="service-price-note">Cena dle rozsahu focení.</div>
+                    <button class="btn btn-primary" style="width: 100%;" onclick="openModal('Profesionální fotografie')">Objednat</button>
+                </div>
+            </div>
+
+            <div class="service-card" data-level="pro" data-type="obsah" data-name="Video prezentace">
+                <span class="service-level pro">Pro</span>
+                <h3 class="service-title">Video prezentace</h3>
+                <p class="service-value">Video zvyšuje konverzi a důvěru</p>
+                <div class="service-includes">
+                    <p class="service-includes-title">Součást balíčku</p>
+                    <ul class="service-includes-list">
+                        <li>Profesionální natáčení.</li>
+                        <li>Střih a postprodukce.</li>
+                        <li>Titulky a grafika.</li>
+                        <li>Optimalizace pro web.</li>
+                    </ul>
+                </div>
+                <div class="service-price-section">
+                    <div class="service-price">Individuálně</div>
+                    <div class="service-price-note">Cena dle rozsahu videa.</div>
+                    <button class="btn btn-primary" style="width: 100%;" onclick="openModal('Video prezentace')">Objednat</button>
+                </div>
+            </div>
+
+            <div class="service-card" data-level="pro" data-type="automatizace" data-name="Náběr nemovitosti">
+                <span class="service-level pro">Pro</span>
+                <h3 class="service-title">Náběr nemovitosti (automatizace)</h3>
+                <p class="service-value">Ušetři 2+ hodiny na každé nemovitosti</p>
+                <div class="service-includes">
+                    <p class="service-includes-title">Součást balíčku</p>
+                    <ul class="service-includes-list">
+                        <li>Online formulář pro sběr dat.</li>
+                        <li>Automatické vytvoření podkladů do Realmana.</li>
+                        <li>Generování inzerátu.</li>
+                        <li>Export dat.</li>
+                    </ul>
+                </div>
+                <div class="service-price-section">
+                    <div class="service-price">V rámci webu</div>
+                    <div class="service-price-note">Zahrnuto v balíčku webu pro makléře.</div>
+                    <button class="btn btn-primary" style="width: 100%;" onclick="openModal('Náběr nemovitosti')">Objednat</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal" id="orderModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h2 class="modal-title" id="modalServiceName">Název služby</h2>
+            <p class="modal-subtitle">Vyplňte formulář a my se vám ozveme.</p>
+            <form id="orderForm" onsubmit="handleOrderSubmit(event)">
+                <div class="form-group">
+                    <label class="form-label" for="modalName">Jméno *</label>
+                    <input type="text" id="modalName" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="modalEmail">E-mail *</label>
+                    <input type="email" id="modalEmail" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="modalRole">Role *</label>
+                    <select id="modalRole" class="form-select" required>
+                        <option value="">Vyberte...</option>
+                        <option value="makler">Realitní makléř</option>
+                        <option value="poradce">Finanční poradce</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="modalNote">Poznámka</label>
+                    <textarea id="modalNote" class="form-textarea"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Odeslat poptávku</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 ZFP Group. Všechna práva vyhrazena.</p>
+            <img src="logo.jpg" alt="ZFP GROUP" class="footer-logo">
+        </div>
+    </footer>
+    <script src="app.js"></script>
+</body>
+</html>
