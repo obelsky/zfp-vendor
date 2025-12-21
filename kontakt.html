@@ -9,22 +9,25 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <a href="home.html" class="logo">
-                <img src="logo.jpg" alt="ZFP GROUP">
-                <span class="logo-product">Vendor</span>
-            </a>
-            <nav>
-                <a href="home.html">Domů</a>
-                <a href="proc-mit-web.html">Proč mít web</a>
-                <a href="sluzby.html">Služby</a>
-                <a href="automatizace.html">Automatizace</a>
-                <a href="jak-to-funguje.html">Jak to funguje</a>
-                <a href="kontakt.html" class="active">Kontakt</a>
-            </nav>
-        </div>
-    </header>
+<header>
+    <div class="header-content">
+        <a href="home.html" class="logo">
+            <img src="logo.jpg" alt="ZFP GROUP">
+            <span class="logo-product">Vendor</span>
+        </a>
+        <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Menu">
+            ☰
+        </button>
+        <nav id="mainNav">
+            <a href="home.html" class="active">Domů</a>
+            <a href="proc-mit-web.html">Proč mít web</a>
+            <a href="sluzby.html">Služby</a>
+            <a href="automatizace.html">Automatizace</a>
+            <a href="jak-to-funguje.html">Jak to funguje</a>
+            <a href="kontakt.html">Kontakt</a>
+        </nav>
+    </div>
+</header>
 
     <div class="page-header">
         <h1>Kontaktujte nás</h1>
@@ -159,6 +162,19 @@
                     submitBtn.textContent = 'Odeslat zprávu';
                     console.log('FAILED...', error);
                 });
+        });
+    </script>
+<script>
+        function toggleMenu() {
+            const nav = document.getElementById('mainNav');
+            nav.classList.toggle('active');
+        }
+        
+        // Close menu when clicking on a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mainNav').classList.remove('active');
+            });
         });
     </script>
 </body>
