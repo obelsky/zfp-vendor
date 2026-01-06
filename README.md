@@ -1,87 +1,143 @@
-# 🚀 ZFP Vendor - Deployment Guide
+# ZFP Vendor - Next.js
 
-Kompletní návod jak dostat web na **zfpvendor.cz**
+Moderní webová platforma pro ZFP Vendor postavená na Next.js 14.
 
-## 📁 Soubory (14 celkem)
+## 🚀 Tech Stack
+
+- **Framework:** Next.js 14 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **Forms:** React Hook Form + Zod
+- **Icons:** Lucide React
+- **Animations:** Framer Motion
+
+## 📁 Struktura projektu
 
 ```
-✓ login.html              - Vstupní stránka s heslem  
-✓ home.html               - Homepage
-✓ proc-mit-web.html       - YMYL, E-E-A-T, SEO stránka
-✓ sluzby.html             - Katalog (cena 7950 Kč)
-✓ automatizace.html       - 4 moduly
-✓ jak-to-funguje.html     - Proces
-✓ kontakt.html            - Kontakt (o.belsky@zfpakademie.cz)
-✓ styles.css
-✓ app.js
-✓ auth.js                 - Password protection
-✓ logo.jpg
-✓ vercel.json
-✓ EMAILJS-SETUP.md
-✓ README.md
+zfp-vendor-nextjs/
+├── app/                    # Next.js App Router
+│   ├── globals.css         # Globální styly + fonty
+│   ├── layout.tsx          # Root layout
+│   ├── page.tsx            # Homepage
+│   ├── sluzby/             # Katalog služeb
+│   ├── kontakt/            # Kontaktní stránka
+│   ├── automatizace/       # Automatizace
+│   ├── jak-to-funguje/     # Proces spolupráce
+│   └── proc-mit-web/       # Argumenty pro web
+├── components/
+│   ├── ui/                 # Základní UI komponenty
+│   │   ├── Button.tsx
+│   │   ├── Card.tsx
+│   │   └── Input.tsx
+│   └── layout/             # Layout komponenty
+│       ├── Header.tsx
+│       └── Footer.tsx
+├── config/
+│   └── site.ts             # Konfigurace webu
+├── lib/
+│   └── utils.ts            # Utility funkce
+├── types/
+│   └── index.ts            # TypeScript typy
+├── public/
+│   ├── fonts/              # Bree + Fedra Sans Pro
+│   └── images/             # Obrázky a logo
+├── tailwind.config.ts      # Tailwind konfigurace
+├── next.config.js          # Next.js konfigurace
+└── package.json
 ```
 
-## 🔐 Password
+## 🎨 Design System
 
-- Vstup: **login.html**
-- Heslo: **`vendorpartner`**
-- Po přihlášení: sessionStorage → přístup
+### Barvy
 
-## 📋 Git → GitHub → Vercel
+| Barva | HEX | Použití |
+|-------|-----|---------|
+| Orange | `#CF5400` | Primární CTA |
+| Gold | `#C9A961` | Nadpisy, akcenty |
+| Bronze | `#A67C52` | Sekundární akcenty |
+| Dark | `#1A1A1A` | Pozadí sekcí |
+| Darker | `#0A0A0A` | Hlavní pozadí |
 
-### 1. Lokální setup
+### Fonty
+
+- **Nadpisy:** Bree (Light, Regular, Bold)
+- **Body:** Fedra Sans Pro (Light, Normal, Medium, Bold)
+
+## 🛠️ Instalace
+
 ```bash
-cd ~/Dokumenty/moje-weby/vendor
-git init
-git add .
-git commit -m "Initial commit: ZFP Vendor"
+# 1. Naklonuj repozitář
+git clone https://github.com/obelsky/zfp-vendor.git
+cd zfp-vendor
+
+# 2. Nainstaluj závislosti
+npm install
+
+# 3. Vytvoř .env.local
+cp .env.example .env.local
+# Uprav hodnoty v .env.local
+
+# 4. Spusť dev server
+npm run dev
 ```
 
-### 2. GitHub
+Otevři [http://localhost:3000](http://localhost:3000)
+
+## 📦 Build & Deploy
+
 ```bash
-git remote add origin https://github.com/TVUJ-USERNAME/zfp-vendor.git
-git branch -M main
-git push -u origin main
+# Build
+npm run build
+
+# Start production server
+npm start
+
+# Type check
+npm run type-check
+
+# Lint
+npm run lint
 ```
 
-### 3. Vercel
-1. vercel.com → Login
-2. New Project → Import zfp-vendor
-3. Framework: Other
-4. Deploy 🚀
+### Vercel Deployment
 
-### 4. Doména zfpvendor.cz
-**Vercel:** Settings → Domains → Add `zfpvendor.cz`
+1. Push na GitHub
+2. Importuj projekt na Vercel
+3. Nastav environment variables
+4. Deploy!
 
-**DNS záznamy:**
+## 🔐 Environment Variables
+
+```env
+# App
+NEXT_PUBLIC_APP_URL=https://zfpvendor.cz
+
+# Supabase (budoucí CRM/CMS)
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+
+# EmailJS
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=
+
+# Analytics
+NEXT_PUBLIC_GA_ID=
 ```
-A @ 76.76.21.21
-CNAME www cname.vercel-dns.com
-```
 
-Propagace: 1-24h
+## 📧 Kontakt
 
-## 📧 EmailJS
+- **E-mail:** o.belsky@zfpakademie.cz
+- **Telefon:** +420 739 677 452
+- **Lokalita:** Břeclav
 
-Formulář potřebuje EmailJS setup!
+## 📝 Budoucí rozšíření
 
-**Viz:** EMAILJS-SETUP.md
-
-## ✅ Checklist
-
-- [ ] 14 souborů ve složce
-- [ ] Git push na GitHub
-- [ ] Vercel deploy
-- [ ] EmailJS setup
-- [ ] DNS záznamy
-- [ ] Test hesla: `vendorpartner`
-- [ ] **LIVE!** 🎉
-
-## 📞 Kontakty
-
-- E-mail: o.belsky@zfpakademie.cz
-- Tel: +420 739 677 452
-- Lokalita: Břeclav
+- [ ] Supabase CRM pro správu leadů
+- [ ] CMS pro blog/články
+- [ ] PWA + Push notifikace
+- [ ] Kalkulačky (hypotéky, investice)
+- [ ] Admin dashboard
 
 ---
 
