@@ -4,147 +4,147 @@ import { useState, useMemo } from 'react';
 import { Card, CardFooter } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
-import { cn, formatPrice } from '@/lib/utils';
-import type { Service, ServiceLevel, ServiceType } from '@/types';
+import { cn } from '@/lib/utils';
+import { 
+  Globe, 
+  Megaphone, 
+  Zap, 
+  FileText,
+  Search,
+  Home,
+  Users,
+  Calculator,
+  BookOpen,
+  Target
+} from 'lucide-react';
+import type { ServiceLevel, ServiceType } from '@/types';
 
-// Services data
+interface Service {
+  id: string;
+  name: string;
+  description: string;
+  level: ServiceLevel;
+  type: ServiceType;
+  icon: typeof Globe;
+  features: string[];
+  isNew?: boolean;
+}
+
 const services: Service[] = [
   {
     id: '1',
     name: 'Web pro realitního makléře',
-    slug: 'web-makler',
-    description: 'Optimalizovaný web pro realitní byznys',
+    description: 'Profesionální web optimalizovaný pro realitní byznys a SEO',
     level: 'zaklad',
     type: 'web',
-    price: 6950,
-    priceType: 'yearly',
-    priceNote: 'Doména a hosting nejsou v ceně',
+    icon: Home,
     features: [
       'Web na vlastní doméně',
-      'Texty zaměřené na realitní služby',
-      'Optimalizace pro vyhledávače',
+      'Optimalizace pro vyhledávače a AI',
       'Sekce: nemovitosti, náběr, hypotéky',
-      'Průběžná podpora a rozvoj',
+      'Responzivní design',
+      'Průběžná podpora',
     ],
   },
   {
     id: '2',
     name: 'Web pro finančního poradce',
-    slug: 'web-poradce',
-    description: 'Profesionální prezentace finančních služeb',
+    description: 'Profesionální prezentace finančních služeb s E-E-A-T',
     level: 'zaklad',
     type: 'web',
-    price: 6950,
-    priceType: 'yearly',
-    priceNote: 'Doména a hosting nejsou v ceně',
+    icon: Users,
     features: [
       'Web na vlastní doméně',
-      'Texty pro finanční poradenství',
-      'Optimalizace pro vyhledávače',
+      'E-E-A-T optimalizace',
       'Sekce: pojištění, hypotéky, investice',
-      'Průběžná podpora a rozvoj',
+      'Responzivní design',
+      'Průběžná podpora',
     ],
   },
   {
     id: '3',
-    name: 'E-book jako lead magnet',
-    slug: 'ebook',
-    description: 'Získávej nové kontakty automaticky',
-    level: 'rust',
-    type: 'marketing',
-    price: 695,
-    priceType: 'one-time',
+    name: 'Property Matching',
+    description: 'Nástroj pro párování nemovitostí s poptávkami klientů',
+    level: 'pro',
+    type: 'automatizace',
+    icon: Target,
+    isNew: true,
     features: [
-      'E-book na vybrané téma',
-      'Landing page ke stažení',
-      'Napojení na e-mailový nástroj',
+      'Automatické párování nabídka/poptávka',
+      'Notifikace při shodě',
+      'Správa poptávek klientů',
+      'Integrace s webem',
     ],
   },
   {
     id: '4',
+    name: 'E-book jako lead magnet',
+    description: 'Získávej nové kontakty automaticky',
+    level: 'rust',
+    type: 'marketing',
+    icon: BookOpen,
+    features: [
+      'E-book na vybrané téma',
+      'Landing page ke stažení',
+      'Napojení na e-mailový nástroj',
+      'Automatická sekvence',
+    ],
+  },
+  {
+    id: '5',
     name: 'Google Ads kampaň',
-    slug: 'google-ads',
     description: 'Buď vidět ve chvíli, kdy tě klient hledá',
     level: 'rust',
     type: 'marketing',
-    price: 1995,
-    priceType: 'monthly',
-    priceNote: 'Reklamní kredit: 5–15 000 Kč / měsíc',
+    icon: Megaphone,
     features: [
       'Nastavení a spuštění kampaní',
       'Výběr klíčových slov',
       'Tvorba reklam',
       'Průběžná optimalizace',
-      'Měsíční report + konzultace',
-    ],
-  },
-  {
-    id: '5',
-    name: 'Facebook / Meta Ads',
-    slug: 'meta-ads',
-    description: 'Zasáhni cílovou skupinu na sociálních sítích',
-    level: 'rust',
-    type: 'marketing',
-    price: 1995,
-    priceType: 'monthly',
-    priceNote: 'Reklamní kredit: 5–15 000 Kč / měsíc',
-    features: [
-      'Nastavení a spuštění kampaní',
-      'Targeting cílové skupiny',
-      'Tvorba kreativ',
-      'Optimalizace',
-      'Měsíční report + konzultace',
+      'Měsíční report',
     ],
   },
   {
     id: '6',
-    name: 'Profesionální fotografie',
-    slug: 'foto',
-    description: 'Zvyš důvěru profesionální prezentací',
-    level: 'zaklad',
-    type: 'obsah',
-    price: null,
-    priceType: 'custom',
-    priceNote: 'Cena dle rozsahu focení',
+    name: 'Hypoteční analyzátor',
+    description: 'Online nástroj pro analýzu hypoteční situace klienta',
+    level: 'pro',
+    type: 'automatizace',
+    icon: Calculator,
     features: [
-      'Profesionální focení',
-      'Úprava a retuš',
-      'Více variant použití',
-      'Digitální dodání',
+      'Online formulář pro klienty',
+      'Strukturovaný výstup',
+      'Podklad pro kalkulace',
+      'Integrace s webem',
     ],
   },
   {
     id: '7',
-    name: 'Video prezentace',
-    slug: 'video',
-    description: 'Video zvyšuje konverzi a důvěru',
-    level: 'pro',
-    type: 'obsah',
-    price: null,
-    priceType: 'custom',
-    priceNote: 'Cena dle rozsahu videa',
-    features: [
-      'Profesionální natáčení',
-      'Střih a postprodukce',
-      'Titulky a grafika',
-      'Optimalizace pro web',
-    ],
-  },
-  {
-    id: '8',
     name: 'Náběr nemovitosti',
-    slug: 'naber',
-    description: 'Ušetři 2+ hodiny na každé nemovitosti',
+    description: 'Automatizovaný sběr dat při náběru nemovitosti',
     level: 'pro',
     type: 'automatizace',
-    price: null,
-    priceType: 'custom',
-    priceNote: 'Zahrnuto v balíčku webu pro makléře',
+    icon: FileText,
     features: [
       'Online formulář pro sběr dat',
       'Automatické vytvoření podkladů',
       'Generování inzerátu',
       'Export dat',
+    ],
+  },
+  {
+    id: '8',
+    name: 'Automatizace na míru',
+    description: 'Vlastní nástroj podle vašich procesů',
+    level: 'pro',
+    type: 'automatizace',
+    icon: Zap,
+    features: [
+      'Analýza vašich procesů',
+      'Návrh řešení',
+      'Vývoj na míru',
+      'Integrace a podpora',
     ],
   },
 ];
@@ -176,17 +176,6 @@ export function ServicesContent() {
     });
   }, [activeLevel, activeType, searchQuery]);
   
-  const getPriceDisplay = (service: Service) => {
-    if (service.price === null) return 'Individuálně';
-    const formatted = formatPrice(service.price);
-    switch (service.priceType) {
-      case 'yearly': return `${formatted} / rok`;
-      case 'monthly': return `${formatted} / měsíc`;
-      case 'one-time': return formatted;
-      default: return formatted;
-    }
-  };
-  
   return (
     <>
       {/* Header */}
@@ -195,7 +184,7 @@ export function ServicesContent() {
         <div className="container-custom text-center">
           <h1>Katalog služeb</h1>
           <p className="text-lg text-white/70 max-w-2xl mx-auto mt-4">
-            Začni tam, kde jsi. Přidávej další služby, až budeš růst.
+            Komplexní řešení pro vaši digitální prezentaci. Vše na míru.
           </p>
         </div>
       </section>
@@ -205,10 +194,10 @@ export function ServicesContent() {
         <div className="container-custom">
           {/* Filters */}
           <Card className="mb-8">
-            <div className="space-y-4">
+            <div className="flex flex-col md:flex-row md:items-center gap-4">
               {/* Level filter */}
-              <div>
-                <label className="block text-xs font-medium uppercase tracking-wider text-white/50 mb-2">
+              <div className="flex-1">
+                <label className="block text-xs font-medium uppercase tracking-wider text-white/40 mb-2">
                   Úroveň
                 </label>
                 <div className="flex flex-wrap gap-2">
@@ -217,11 +206,10 @@ export function ServicesContent() {
                       key={level}
                       onClick={() => setActiveLevel(level)}
                       className={cn(
-                        'px-4 py-2 rounded-full text-sm font-normal transition-all duration-150',
-                        'border',
+                        'px-3 py-1.5 rounded-full text-sm transition-all duration-150 border',
                         activeLevel === level
                           ? 'bg-gradient-to-r from-brand-gold to-brand-orange text-brand-darker border-transparent'
-                          : 'bg-transparent text-white/70 border-white/10 hover:border-brand-gold hover:text-brand-gold'
+                          : 'bg-transparent text-white/60 border-white/10 hover:border-brand-gold/50 hover:text-white'
                       )}
                     >
                       {level === 'vse' ? 'Vše' : levelLabels[level]}
@@ -231,21 +219,20 @@ export function ServicesContent() {
               </div>
               
               {/* Type filter */}
-              <div>
-                <label className="block text-xs font-medium uppercase tracking-wider text-white/50 mb-2">
-                  Typ služby
+              <div className="flex-1">
+                <label className="block text-xs font-medium uppercase tracking-wider text-white/40 mb-2">
+                  Typ
                 </label>
                 <div className="flex flex-wrap gap-2">
-                  {(['vse', 'web', 'marketing', 'automatizace', 'obsah'] as const).map((type) => (
+                  {(['vse', 'web', 'marketing', 'automatizace'] as const).map((type) => (
                     <button
                       key={type}
                       onClick={() => setActiveType(type)}
                       className={cn(
-                        'px-4 py-2 rounded-full text-sm font-normal transition-all duration-150',
-                        'border',
+                        'px-3 py-1.5 rounded-full text-sm transition-all duration-150 border',
                         activeType === type
                           ? 'bg-gradient-to-r from-brand-gold to-brand-orange text-brand-darker border-transparent'
-                          : 'bg-transparent text-white/70 border-white/10 hover:border-brand-gold hover:text-brand-gold'
+                          : 'bg-transparent text-white/60 border-white/10 hover:border-brand-gold/50 hover:text-white'
                       )}
                     >
                       {type === 'vse' ? 'Vše' : typeLabels[type]}
@@ -255,85 +242,96 @@ export function ServicesContent() {
               </div>
               
               {/* Search */}
-              <div>
-                <label className="block text-xs font-medium uppercase tracking-wider text-white/50 mb-2">
-                  Vyhledávání
+              <div className="md:w-64">
+                <label className="block text-xs font-medium uppercase tracking-wider text-white/40 mb-2">
+                  Hledat
                 </label>
-                <Input
-                  type="text"
-                  placeholder="Hledat podle názvu..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="max-w-md"
-                />
+                <div className="relative">
+                  <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-white/30" />
+                  <Input
+                    type="text"
+                    placeholder="Název služby..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="pl-9"
+                  />
+                </div>
               </div>
             </div>
           </Card>
           
           {/* Services Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredServices.map((service) => (
-              <Card key={service.id} variant="glow" className="flex flex-col">
-                {/* Level badge */}
-                <span
-                  className={cn(
-                    'inline-block w-fit px-3 py-1 rounded-full text-xs font-medium uppercase tracking-wider mb-4',
-                    service.level === 'zaklad' && 'bg-white/10 text-white/70',
-                    service.level === 'rust' && 'bg-brand-gold/20 text-brand-gold',
-                    service.level === 'pro' && 'bg-gradient-to-r from-brand-gold to-brand-orange text-brand-darker'
-                  )}
-                >
-                  {levelLabels[service.level]}
-                </span>
-                
-                {/* Title & Description */}
-                <h3 className="font-heading text-xl text-white mb-1">
-                  {service.name}
-                </h3>
-                <p className="text-white/60 text-sm mb-4">
-                  {service.description}
-                </p>
-                
-                {/* Features */}
-                <div className="flex-grow mb-4">
-                  <p className="text-xs font-medium uppercase tracking-wider text-white/40 mb-2">
-                    Součást balíčku
-                  </p>
-                  <ul className="space-y-1">
+            {filteredServices.map((service) => {
+              const Icon = service.icon;
+              return (
+                <Card key={service.id} variant="glow" className="flex flex-col">
+                  {/* Header */}
+                  <div className="flex items-start justify-between mb-4">
+                    <span
+                      className={cn(
+                        'px-3 py-1 rounded-full text-xs font-medium uppercase tracking-wider',
+                        service.level === 'zaklad' && 'bg-white/10 text-white/60',
+                        service.level === 'rust' && 'bg-brand-gold/20 text-brand-gold',
+                        service.level === 'pro' && 'bg-gradient-to-r from-brand-gold to-brand-orange text-brand-darker'
+                      )}
+                    >
+                      {levelLabels[service.level]}
+                    </span>
+                    {service.isNew && (
+                      <span className="px-2 py-0.5 rounded-full bg-brand-orange/20 text-brand-orange text-xs">
+                        Nové
+                      </span>
+                    )}
+                  </div>
+                  
+                  {/* Icon & Title */}
+                  <div className="flex items-start gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-lg bg-brand-gold/10 border border-white/10 flex items-center justify-center flex-shrink-0">
+                      <Icon size={20} className="text-brand-gold" strokeWidth={1.5} />
+                    </div>
+                    <div>
+                      <h3 className="font-heading text-lg text-white">
+                        {service.name}
+                      </h3>
+                      <p className="text-white/50 text-sm">
+                        {service.description}
+                      </p>
+                    </div>
+                  </div>
+                  
+                  {/* Features */}
+                  <ul className="space-y-1.5 mb-6 flex-grow">
                     {service.features.map((feature, index) => (
                       <li
                         key={index}
-                        className="text-sm text-white/60 pl-5 relative before:content-['✓'] before:absolute before:left-0 before:text-brand-gold before:font-bold"
+                        className="text-sm text-white/50 pl-4 relative before:content-['→'] before:absolute before:left-0 before:text-brand-gold/60 before:text-xs"
                       >
                         {feature}
                       </li>
                     ))}
                   </ul>
-                </div>
-                
-                {/* Price & CTA */}
-                <CardFooter>
-                  <div className="mb-4">
-                    <p className="font-heading text-2xl text-brand-gold">
-                      {getPriceDisplay(service)}
-                    </p>
-                    {service.priceNote && (
-                      <p className="text-xs text-white/40">{service.priceNote}</p>
-                    )}
-                  </div>
-                  <Button className="w-full">Objednat</Button>
-                </CardFooter>
-              </Card>
-            ))}
+                  
+                  {/* Price & CTA */}
+                  <CardFooter className="mt-auto">
+                    <div className="flex items-center justify-between">
+                      <p className="font-heading text-lg text-brand-gold">
+                        Individuálně
+                      </p>
+                      <Button size="sm" href="/kontakt">Zájem</Button>
+                    </div>
+                  </CardFooter>
+                </Card>
+              );
+            })}
           </div>
           
           {/* Empty state */}
           {filteredServices.length === 0 && (
             <div className="text-center py-12">
-              <p className="text-white/50">Žádné služby neodpovídají vašemu filtru.</p>
+              <p className="text-white/50 mb-4">Žádné služby neodpovídají filtru.</p>
               <Button
                 variant="secondary"
-                className="mt-4"
                 onClick={() => {
                   setActiveLevel('vse');
                   setActiveType('vse');

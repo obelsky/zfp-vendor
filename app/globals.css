@@ -31,6 +31,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Bree';
+  src: url('/fonts/Bree_ExtraBold.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Fedra Sans Pro - tělo textu */
 @font-face {
   font-family: 'Fedra Sans Pro';
@@ -258,4 +266,61 @@
   .text-balance {
     text-wrap: balance;
   }
+}
+
+/* Prose styles for workshop chapters */
+.prose-custom {
+  @apply text-white/70;
+}
+
+.prose-custom h2 {
+  @apply font-heading text-2xl text-brand-gold mt-12 mb-4;
+}
+
+.prose-custom h3 {
+  @apply font-heading text-xl text-white mt-8 mb-3;
+}
+
+.prose-custom h4 {
+  @apply font-heading text-lg text-white/90 mt-6 mb-2;
+}
+
+.prose-custom p {
+  @apply mb-4 leading-relaxed;
+}
+
+.prose-custom ul {
+  @apply mb-6 space-y-2;
+}
+
+.prose-custom li {
+  @apply pl-6 relative;
+}
+
+.prose-custom li::before {
+  @apply content-['→'] absolute left-0 text-brand-gold;
+}
+
+.prose-custom strong {
+  @apply text-white font-medium;
+}
+
+.prose-custom .highlight-box {
+  @apply p-6 my-8 bg-brand-dark rounded-xl border border-white/10;
+}
+
+.prose-custom .highlight-box.gold {
+  @apply bg-brand-gold/5 border-brand-gold/20;
+}
+
+.prose-custom .key-point {
+  @apply p-4 my-6 border-l-4 border-brand-gold bg-brand-gold/5 rounded-r-lg;
+}
+
+.prose-custom .key-point p {
+  @apply mb-0 text-white/80;
+}
+
+.prose-custom blockquote {
+  @apply my-8 pl-6 border-l-2 border-brand-gold/50 italic text-white/60;
 }

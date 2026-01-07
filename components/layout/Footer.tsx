@@ -13,13 +13,13 @@ export function Footer() {
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-3 mb-4">
               <Image
-                src="/images/logo.jpg"
+                src="/images/zfp_group_white.png"
                 alt="ZFP GROUP"
-                width={48}
-                height={48}
-                className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity"
+                width={120}
+                height={40}
+                className="h-8 w-auto opacity-80 hover:opacity-100 transition-opacity"
               />
-              <span className="font-heading text-xl text-brand-gold tracking-wide">
+              <span className="font-heading font-bold text-xl text-brand-gold tracking-wide">
                 Vendor
               </span>
             </Link>

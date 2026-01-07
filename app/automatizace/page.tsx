@@ -1,7 +1,15 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
+import { 
+  Home, 
+  FileSearch, 
+  Calculator, 
+  Settings,
+  Workflow,
+  Database,
+  ArrowRight
+} from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Automatizace',
@@ -10,16 +18,21 @@ export const metadata: Metadata = {
 
 const modules = [
   {
-    icon: '🏡',
+    icon: Home,
     title: 'Náběr nemovitosti',
-    description: 'Online formulář pro kompletní sběr dat o nemovitosti. Automatické vytvoření podkladů do Realmana, generování inzerátu a export dat.',
-    features: [],
-    href: '/sluzby',
+    description: 'Online formulář pro kompletní sběr dat o nemovitosti. Automatické vytvoření podkladů, generování inzerátu a export dat.',
+    features: [
+      'Strukturovaný sběr dat',
+      'Automatické podklady pro Realman',
+      'Generování inzerátu',
+      'Export a integrace',
+    ],
+    href: '/kontakt',
   },
   {
-    icon: '📋',
+    icon: FileSearch,
     title: 'Poptávky nemovitostí',
-    description: 'Automatizovaný sběr poptávek na koupi, prodej nebo pronájem nemovitosti. Strukturovaná data z formuláře se okamžitě propisují do CRM.',
+    description: 'Automatizovaný sběr poptávek na koupi, prodej nebo pronájem. Strukturovaná data se okamžitě propisují do CRM.',
     features: [
       'Online formulář pro poptávku',
       'Validace vstupních dat',
@@ -29,7 +42,7 @@ const modules = [
     href: '/kontakt',
   },
   {
-    icon: '🧮',
+    icon: Calculator,
     title: 'Hypoteční analyzátor',
     description: 'Nástroj pro rychlou analýzu hypoteční situace klienta. Strukturovaný výstup pro poradce.',
     features: [
@@ -41,9 +54,9 @@ const modules = [
     href: '/kontakt',
   },
   {
-    icon: '⚙️',
+    icon: Settings,
     title: 'Automatizace na míru',
-    description: 'Navrhujeme a realizujeme automatizace přesně podle vašich procesů.',
+    description: 'Navrhujeme a realizujeme automatizace přesně podle vašich procesů a potřeb.',
     features: [
       'Propojení formulářů → CRM → e-mail',
       'Automatické generování dokumentů',
@@ -61,73 +74,70 @@ export default function AutomatizacePage() {
       <section className="pt-32 pb-12 bg-brand-dark relative">
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-gold to-transparent" />
         <div className="container-custom text-center">
-          <h1>Automatizace procesů</h1>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-gold/10 border border-brand-gold/20 text-brand-gold text-sm mb-6">
+            <Workflow size={16} />
+            <span>Automatizace procesů</span>
+          </div>
+          <h1>Automatizace</h1>
           <p className="text-lg text-white/70 max-w-2xl mx-auto mt-4">
             Ušetřete čas s inteligentními nástroji navázanými na váš core byznys.
           </p>
         </div>
       </section>
       
-      {/* Banner */}
-      <section className="py-12">
-        <div className="container-custom">
-          <div className="max-w-4xl mx-auto">
-            <Image
-              src="https://images.unsplash.com/photo-1488229297570-58520851e868?w=1200&h=500&fit=crop&q=80"
-              alt="Automatizace a technologie"
-              width={1200}
-              height={500}
-              className="w-full rounded-xl border border-white/10"
-            />
-          </div>
-        </div>
-      </section>
-      
       {/* Modules */}
-      <section className="section pt-8">
+      <section className="section">
         <div className="container-custom">
-          <div className="grid md:grid-cols-2 gap-6">
-            {modules.map((module, index) => (
-              <Card key={index} variant="glow">
-                <div className="text-4xl mb-4">{module.icon}</div>
-                <h3 className="font-heading text-xl text-white mb-2">{module.title}</h3>
-                <p className="text-white/60 mb-4">{module.description}</p>
-                
-                {module.features.length > 0 && (
-                  <ul className="space-y-1 mb-4">
+          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            {modules.map((module, index) => {
+              const Icon = module.icon;
+              return (
+                <Card key={index} variant="glow" className="flex flex-col">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-12 h-12 rounded-lg bg-brand-gold/10 border border-white/10 flex items-center justify-center flex-shrink-0">
+                      <Icon size={24} className="text-brand-gold" strokeWidth={1.5} />
+                    </div>
+                    <div>
+                      <h3 className="font-heading text-xl text-white mb-1">{module.title}</h3>
+                      <p className="text-white/60 text-sm">{module.description}</p>
+                    </div>
+                  </div>
+                  
+                  <ul className="space-y-2 mb-6 flex-grow">
                     {module.features.map((feature, idx) => (
                       <li
                         key={idx}
-                        className="text-sm text-white/60 pl-5 relative before:content-['✓'] before:absolute before:left-0 before:text-brand-gold before:font-bold"
+                        className="text-sm text-white/50 pl-5 relative before:content-['→'] before:absolute before:left-0 before:text-brand-gold"
                       >
                         {feature}
                       </li>
                     ))}
                   </ul>
-                )}
-                
-                <Button variant="secondary" href={module.href}>Zjistit více</Button>
-              </Card>
-            ))}
+                  
+                  <Button variant="secondary" href={module.href} size="sm">
+                    Zjistit více
+                    <ArrowRight size={14} className="ml-2" />
+                  </Button>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>
       
-      {/* Integration Image */}
+      {/* Integration Section */}
       <section className="section bg-brand-dark">
         <div className="container-custom">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-3xl mx-auto text-center">
+            <Database size={48} className="mx-auto mb-6 text-brand-gold" strokeWidth={1.5} />
             <h2 className="mb-4">Propojené systémy</h2>
-            <p className="text-lg text-white/70 mb-8">
-              Naše automatizace propojují vaše nástroje do jednoho fungujícího ekosystému.
+            <p className="text-white/70 mb-8">
+              Naše automatizace propojují vaše nástroje do jednoho fungujícího ekosystému. 
+              Formuláře, CRM, e-maily, dokumenty – vše komunikuje automaticky.
             </p>
-            <Image
-              src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=1000&h=600&fit=crop&q=80"
-              alt="Systémová integrace"
-              width={1000}
-              height={600}
-              className="w-full rounded-xl border border-white/10"
-            />
+            <Button href="/kontakt">
+              Nezávazná konzultace
+            </Button>
           </div>
         </div>
       </section>

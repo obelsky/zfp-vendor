@@ -33,7 +33,7 @@ export const navigation = [
   { name: 'Proč mít web', href: '/proc-mit-web' },
   { name: 'Služby', href: '/sluzby' },
   { name: 'Automatizace', href: '/automatizace' },
-  { name: 'Jak to funguje', href: '/jak-to-funguje' },
+  { name: 'Akademie', href: '/akademie' },
   { name: 'Kontakt', href: '/kontakt' },
 ] as const;
 

@@ -1,13 +1,12 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import { ContactForm } from './ContactForm';
 import { Card } from '@/components/ui/Card';
 import { siteConfig } from '@/config/site';
-import { Mail, Phone, Clock, MapPin } from 'lucide-react';
+import { Mail, Phone, Clock, MapPin, MessageSquare } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Kontakt',
-  description: 'Kontaktujte ZFP Vendor - máme odpovědi na vaše otázky.',
+  description: 'Kontaktujte ZFP Vendor - konzultace zdarma.',
 };
 
 export default function KontaktPage() {
@@ -17,35 +16,24 @@ export default function KontaktPage() {
       <section className="pt-32 pb-12 bg-brand-dark relative">
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-gold to-transparent" />
         <div className="container-custom text-center">
-          <h1>Kontaktujte nás</h1>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-gold/10 border border-brand-gold/20 text-brand-gold text-sm mb-6">
+            <MessageSquare size={16} />
+            <span>Spojte se s námi</span>
+          </div>
+          <h1>Kontakt</h1>
           <p className="text-lg text-white/70 max-w-2xl mx-auto mt-4">
-            Máte otázky nebo chcete konzultaci? Napište nám a my se vám ozveme do 24 hodin.
+            Máte otázky nebo chcete konzultaci? Napište nám a ozveme se do 24 hodin.
           </p>
         </div>
       </section>
       
-      {/* Banner Image */}
-      <section className="py-12">
-        <div className="container-custom">
-          <div className="max-w-4xl mx-auto">
-            <Image
-              src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1200&h=400&fit=crop&q=80"
-              alt="Kontaktujte nás"
-              width={1200}
-              height={400}
-              className="w-full rounded-xl border border-white/10"
-            />
-          </div>
-        </div>
-      </section>
-      
       {/* Contact Grid */}
-      <section className="section pt-8">
+      <section className="section">
         <div className="container-custom">
-          <div className="grid lg:grid-cols-5 gap-8">
+          <div className="grid lg:grid-cols-5 gap-8 max-w-5xl mx-auto">
             {/* Form */}
             <div className="lg:col-span-3">
-              <Card>
+              <Card className="p-8">
                 <h3 className="font-heading text-xl text-white mb-6">Napište nám</h3>
                 <ContactForm />
               </Card>
@@ -53,19 +41,19 @@ export default function KontaktPage() {
             
             {/* Contact Info */}
             <div className="lg:col-span-2">
-              <Card>
-                <h3 className="font-heading text-xl text-white mb-6">Kontaktní informace</h3>
+              <Card className="p-8">
+                <h3 className="font-heading text-xl text-white mb-6">Kontaktní údaje</h3>
                 
                 <div className="space-y-6">
                   <div className="flex gap-4">
-                    <div className="text-brand-gold">
-                      <Mail size={20} />
+                    <div className="w-10 h-10 rounded-lg bg-brand-gold/10 border border-white/10 flex items-center justify-center flex-shrink-0">
+                      <Mail size={18} className="text-brand-gold" strokeWidth={1.5} />
                     </div>
                     <div>
                       <h4 className="font-heading text-sm text-white mb-1">E-mail</h4>
                       <a
                         href={`mailto:${siteConfig.contact.email}`}
-                        className="text-white/70 hover:text-brand-gold transition-colors"
+                        className="text-white/60 hover:text-brand-gold transition-colors text-sm"
                       >
                         {siteConfig.contact.email}
                       </a>
@@ -73,39 +61,38 @@ export default function KontaktPage() {
                   </div>
                   
                   <div className="flex gap-4">
-                    <div className="text-brand-gold">
-                      <Phone size={20} />
+                    <div className="w-10 h-10 rounded-lg bg-brand-gold/10 border border-white/10 flex items-center justify-center flex-shrink-0">
+                      <Phone size={18} className="text-brand-gold" strokeWidth={1.5} />
                     </div>
                     <div>
                       <h4 className="font-heading text-sm text-white mb-1">Telefon</h4>
                       <a
                         href={`tel:${siteConfig.contact.phone}`}
-                        className="text-white/70 hover:text-brand-gold transition-colors"
+                        className="text-white/60 hover:text-brand-gold transition-colors text-sm"
                       >
                         {siteConfig.contact.phoneDisplay}
                       </a>
-                      <p className="text-xs text-white/40 mt-1">Po–Pá: 9:00 – 17:00</p>
                     </div>
                   </div>
                   
                   <div className="flex gap-4">
-                    <div className="text-brand-gold">
-                      <Clock size={20} />
+                    <div className="w-10 h-10 rounded-lg bg-brand-gold/10 border border-white/10 flex items-center justify-center flex-shrink-0">
+                      <Clock size={18} className="text-brand-gold" strokeWidth={1.5} />
                     </div>
                     <div>
                       <h4 className="font-heading text-sm text-white mb-1">Doba odezvy</h4>
-                      <p className="text-white/70">Odpovídáme do 24 hodin</p>
+                      <p className="text-white/60 text-sm">Do 24 hodin</p>
                     </div>
                   </div>
                   
-                  <div className="mt-8 p-4 bg-brand-darker rounded-lg border border-white/10">
+                  <div className="pt-4 mt-4 border-t border-white/10">
                     <div className="flex gap-4">
-                      <div className="text-brand-gold">
-                        <MapPin size={20} />
+                      <div className="w-10 h-10 rounded-lg bg-brand-gold/10 border border-white/10 flex items-center justify-center flex-shrink-0">
+                        <MapPin size={18} className="text-brand-gold" strokeWidth={1.5} />
                       </div>
                       <div>
-                        <h4 className="font-heading text-sm text-brand-gold mb-1">Kde nás najdete</h4>
-                        <p className="text-white/60 text-sm">
+                        <h4 className="font-heading text-sm text-brand-gold mb-1">Lokace</h4>
+                        <p className="text-white/50 text-sm">
                           {siteConfig.company.name}<br />
                           {siteConfig.contact.location}
                         </p>
@@ -115,25 +102,6 @@ export default function KontaktPage() {
                 </div>
               </Card>
             </div>
-          </div>
-        </div>
-      </section>
-      
-      {/* Team Image */}
-      <section className="section bg-brand-dark">
-        <div className="container-custom">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="mb-4">Jsme tu pro vás</h2>
-            <p className="text-lg text-white/70 mb-8">
-              Náš tým je připraven vám pomoci s jakýmkoliv dotazem nebo projektem.
-            </p>
-            <Image
-              src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1000&h=500&fit=crop&q=80"
-              alt="Náš tým"
-              width={1000}
-              height={500}
-              className="w-full rounded-xl border border-white/10"
-            />
           </div>
         </div>
       </section>
