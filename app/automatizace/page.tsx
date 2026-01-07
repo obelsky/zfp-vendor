@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 
@@ -107,9 +106,7 @@ export default function AutomatizacePage() {
                   </ul>
                 )}
                 
-                <Button variant="secondary" asChild>
-                  <Link href={module.href}>Zjistit více</Link>
-                </Button>
+                <Button variant="secondary" href={module.href}>Zjistit více</Button>
               </Card>
             ))}
           </div>

@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { CheckCircle, XCircle } from 'lucide-react';
@@ -120,9 +119,7 @@ export default function ProcMitWebPage() {
                 <p className="text-white/70 mb-6">
                   Naše weby nejsou šablony. Každý web stavíme s ohledem na YMYL, E-E-A-T, SEO, GEO a AIO.
                 </p>
-                <Button asChild>
-                  <Link href="/sluzby">Zobrazit naše služby</Link>
-                </Button>
+                <Button href="/sluzby">Zobrazit naše služby</Button>
               </Card>
             </div>
           </div>

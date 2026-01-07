@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 
@@ -49,12 +48,8 @@ export default function HomePage() {
                 a automatizaci vašeho byznysu. Od webů přes marketing až po pokročilé nástroje.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Button asChild>
-                  <Link href="/sluzby">Prohlédnout služby</Link>
-                </Button>
-                <Button variant="secondary" asChild>
-                  <Link href="/proc-mit-web">Proč mít web</Link>
-                </Button>
+                <Button href="/sluzby">Prohlédnout služby</Button>
+                <Button variant="secondary" href="/proc-mit-web">Proč mít web</Button>
               </div>
             </div>
             
@@ -129,9 +124,7 @@ export default function HomePage() {
             <p className="text-lg text-white/70 mb-8">
               Prohlédněte si katalog služeb a vyberte si, co potřebujete.
             </p>
-            <Button asChild size="lg">
-              <Link href="/sluzby">Zobrazit katalog služeb</Link>
-            </Button>
+            <Button href="/sluzby" size="lg">Zobrazit katalog služeb</Button>
           </div>
         </div>
       </section>

@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 
@@ -148,9 +147,7 @@ export default function JakToFungujePage() {
             <p className="text-lg text-white/70 mb-8">
               Rádi vám zodpovíme jakékoliv dotazy ohledně procesu nebo služeb.
             </p>
-            <Button asChild>
-              <Link href="/kontakt">Kontaktujte nás</Link>
-            </Button>
+            <Button href="/kontakt">Kontaktujte nás</Button>
           </div>
         </div>
       </section>
